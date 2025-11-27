@@ -1,4 +1,4 @@
 package edu.unl.cc.ordermaster.domain;
 
-public class Administrador {
+public class ItemPedido {
 }

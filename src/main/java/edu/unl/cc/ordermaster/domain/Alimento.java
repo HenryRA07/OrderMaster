@@ -1,9 +1,38 @@
 package edu.unl.cc.ordermaster.domain;
 
-public class Alimento {
+public abstract class Alimento {
     private String nombre;
-    private float precio;
     private String descripcion;
-    private String dispnibilidad;
 
+    public Alimento() {
+    }
+
+    public Alimento(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    @Override
+    public String toString() {
+        return "Alimento{" +
+                "nombre='" + nombre + '\'' +
+                ", descripcion='" + descripcion + '\'' +
+                '}';
+    }
 }

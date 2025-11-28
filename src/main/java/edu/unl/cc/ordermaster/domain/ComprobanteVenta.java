@@ -24,7 +24,7 @@ public class ComprobanteVenta {
     }
 
 
-    public String generalComprobante() throws IllegalArgumentException {
+    public String generarComprobante() throws IllegalArgumentException {
         if (pedido == null || pedido.getItemPedido() == null) {
             throw new IllegalArgumentException("No hay pedido para generar comprobante");
         }

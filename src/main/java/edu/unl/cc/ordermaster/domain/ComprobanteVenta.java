@@ -28,7 +28,8 @@ public class ComprobanteVenta {
         s.append("Fecha de Comprobante: " + this.fechaComprobante+"\n");
         s.append("Productos consumidos: \n");
         for(ItemPedido pedidos:pedido.getItemPedido()){
-            s.append(String.format("-%s -- %d -- %.2f\n",pedidos.getItem().getAlimento().getNombre(),pedidos.getCantidad(),pedidos.getSubtotal()));
+            s.append(String.format("-%s -- %d -- %.2f\n",pedidos.getItem().getAlimento().getNombre(),
+                    pedidos.getCantidad(),pedidos.getSubtotal()));
         }
         s.append("---------------------------------------------------\n");
         s.append("Total pagar: "+pedido.calcularTotal());

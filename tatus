@@ -1,0 +1,105 @@
+[33mcommit 7f6fd480c59d69d52bcf6bf54463933adb7c2bc9[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: ludenafranz <franz.ludena@unl.edu.ec>
+Date:   Fri Nov 28 08:42:02 2025 -0500
+
+    style: cambios en el formato
+
+[33mcommit a111195406a7ad0168c17e7421537c14cdfee546[m
+Author: Alexander_Gallo <rodolfo.gallo@unl.edu.ec>
+Date:   Fri Nov 28 04:36:44 2025 -0500
+
+    feat: Test agregar items de la clase Pedido
+
+[33mcommit b90dc5cfd1b077be6756c05b4ca10534a4409b60[m
+Author: FranciscoChamba <francisco.chamba@unl.edu.ec>
+Date:   Fri Nov 28 04:17:31 2025 -0500
+
+    feat: Avanze del modo texto
+
+[33mcommit 52e18e04b47677509420f5b5b9d84e915ca0b160[m
+Author: HenryRA07 <hr4393821@gmail.com>
+Date:   Fri Nov 28 04:10:23 2025 -0500
+
+    fix: Corregir error de metodo de la clase ComprobanteVenta
+
+[33mcommit e2e0914804b725d566b0ed84307ebdd0ff8ca34e[m
+Author: HenryRA07 <hr4393821@gmail.com>
+Date:   Fri Nov 28 03:58:27 2025 -0500
+
+    fix: Corregir conflictos con archivos
+
+[33mcommit 53780e4b8577bd3e552818f26eeb9328e712f630[m
+Author: Alexander_Gallo <rodolfo.gallo@unl.edu.ec>
+Date:   Fri Nov 28 03:41:04 2025 -0500
+
+    feat: Implementar el manejo de excepciones
+
+[33mcommit ef9409a7433715e69b6c3f82af56112e041b58b6[m
+Author: HenryRA07 <hr4393821@gmail.com>
+Date:   Fri Nov 28 02:23:24 2025 -0500
+
+    feat: Agregar modificaciones de clases y relaciones
+
+[33mcommit a2e0b5b3ecce71ef71d3f96e7ef06e742911e3db[m
+Author: ludenafranz <franz.ludena@unl.edu.ec>
+Date:   Thu Nov 27 23:23:43 2025 -0500
+
+    Creacion clase MetododePago y clases Hijas
+
+[33mcommit cef3d7b39d1f4a1bc0789eaf3f5041529b78d32a[m
+Author: ludenafranz <franz.ludena@unl.edu.ec>
+Date:   Thu Nov 27 23:15:51 2025 -0500
+
+    Cambio Nombre clase Alimento
+
+[33mcommit 2b6197676a02ceade2ed42393913b40d9a0d1ac0[m
+Author: ludenafranz <franz.ludena@unl.edu.ec>
+Date:   Thu Nov 27 22:50:19 2025 -0500
+
+    Integracion clase Cliente, Pedido, comprobante de venta
+
+[33mcommit 0ec638a43e03940b68cb424aae649f51840409eb[m
+Author: ludenafranz <franz.ludena@unl.edu.ec>
+Date:   Thu Nov 27 17:51:59 2025 -0500
+
+    Imprementacion Clase pedido y ItemPedido
+    
+    se agrego los atributos y metodos de ambas clases
+
+[33mcommit 7bc1ee39d008e7fbcf5bb5e1fc354a156f62f1fe[m
+Author: ludenafranz <franz.ludena@unl.edu.ec>
+Date:   Thu Nov 27 15:56:59 2025 -0500
+
+    Imprementacion
+    
+    Creacion de las clases ItemMenu e ItemPedido y se agregaron metodos y atributos en las clases Alimento, ItemMenu y Menu
+
+[33mcommit 2263b38e80cce24b071bc42ec3fbbc9ef58775a9[m
+Author: ludenafranz <franz.ludena@unl.edu.ec>
+Date:   Wed Nov 26 07:18:27 2025 -0500
+
+    Creacion Clases Base
+
+[33mcommit 0f1709c556ca63bb81de11b9a9f4361f72018dc1[m
+Author: ludenafranz <franz.ludena@unl.edu.ec>
+Date:   Sat Nov 22 14:17:52 2025 -0500
+
+    Ingresar Menu
+
+[33mcommit 0c7993d4e64ea146b9625588878df85b4935bd3d[m
+Author: HenryRA07 <hr4393821@gmail.com>
+Date:   Sat Nov 22 13:46:48 2025 -0500
+
+    Archivos y esquema base
+
+[33mcommit 7d0a4540488f6b96753c8213ed7d3b4e244add5c[m
+Author: HenryRA07 <hr4393821@gmail.com>
+Date:   Sat Nov 22 12:52:50 2025 -0500
+
+    modificacion de gitignore
+
+[33mcommit 7aa1904bb3be47338160cebd373876ac443373b2[m
+Author: HenryRA07 <hr4393821@gmail.com>
+Date:   Sat Nov 22 08:48:01 2025 -0500
+
+    Inicializacion

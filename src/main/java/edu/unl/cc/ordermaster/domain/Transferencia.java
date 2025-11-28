@@ -6,14 +6,8 @@ public class Transferencia extends MetodoPago{
 
     public Transferencia(float cantidad, String banco, String numeroComprobante){
         super(cantidad);
-        if (banco == null || banco.trim().isEmpty()){
-            throw new IllegalArgumentException("El banco no puede estar vacío");
-        }
-        this.banco = banco;
-        if (numeroComprobante == null || numeroComprobante.trim().isEmpty()){
-            throw new IllegalArgumentException("El número de comprobante no puede estar vacio");
-        }
-        this.numeroComprobante = numeroComprobante;
+        setBanco(banco);
+        setNumeroComprobante(numeroComprobante);
     }
 
     public String getBanco() {

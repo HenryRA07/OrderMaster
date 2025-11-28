@@ -10,12 +10,8 @@ public class ItemPedido {
     }
 
     public ItemPedido(int cantidad, ItemMenu item) {
-        if(cantidad <= 0){
-            throw new IllegalArgumentException("La cantidad por lo menos debe ser uno");
-        }
-        if(item == null){
-            throw new IllegalArgumentException("Item no pueder estar vacio");
-        }
+        setCantidad(cantidad);
+        setItem(item);
         this.item = item;
         this.cantidad = cantidad;
     }

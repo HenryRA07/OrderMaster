@@ -10,15 +10,9 @@ public class ItemMenu {
     }
 
     public ItemMenu(float precio, boolean disponibilidad, Producto producto) {
-        if (precio <= 0) {
-            throw new IllegalArgumentException("El precio debe ser mayor a 0");
-        }
-        if (producto == null) {
-            throw new IllegalArgumentException("El producto no puede ser nulo");
-        }
-        this.precio = precio;
+        setPrecio(precio);
+        setProducto(producto);
         this.disponibilidad = disponibilidad;
-        this.producto = producto;
     }
 
     public float getPrecio() {

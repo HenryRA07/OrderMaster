@@ -12,6 +12,7 @@ public class Efectivo extends MetodoPago{
     }
 
     public float getCambioEntregado() {
+        // ToDo Dar Valor del cambio a dar
         return cambioEntregado;
     }
 

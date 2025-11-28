@@ -40,11 +40,11 @@ public class ItemMenu {
         this.disponibilidad = disponibilidad;
     }
 
-    public Producto getAlimento() {
+    public Producto getProducto() {
         return producto;
     }
 
-    public void setAlimento(Producto producto) {
+    public void setProducto(Producto producto) {
         if (producto == null) {
             throw new IllegalArgumentException("El producto no puede ser nulo");
         }

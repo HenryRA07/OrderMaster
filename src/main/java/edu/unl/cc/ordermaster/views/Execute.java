@@ -2,9 +2,7 @@ package edu.unl.cc.ordermaster.views;
 
 import edu.unl.cc.ordermaster.domain.*;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Execute {
@@ -29,7 +27,7 @@ public class Execute {
         System.out.println("\n--- " + menu.getNombreMenu() + " (" + menu.getTipoMenu() + ") ---");
         int contador = 1;
         for (ItemMenu item : menu.getItemMenu()) {
-            System.out.printf("%d. %s - %.2f $\n", contador++, item.getAlimento().getNombre(), item.getPrecio());
+            System.out.printf("%d. %s - %.2f $\n", contador++, item.getProducto().getNombre(), item.getPrecio());
         }
         System.out.println("----------------------------------------------");
     }
@@ -135,7 +133,7 @@ public class Execute {
                 if (cantidad > 0) {
                     ItemPedido linea = new ItemPedido(cantidad, itemSeleccionado);
                     pedido.agregarItems(linea);
-                    System.out.println(" " + cantidad + "x " + itemSeleccionado.getAlimento().getNombre() + " agregado/s al pedido.");
+                    System.out.println(" " + cantidad + "x " + itemSeleccionado.getProducto().getNombre() + " agregado/s al pedido.");
                 } else {
                     System.out.println(" La cantidad debe ser mayor a cero.");
                 }
@@ -162,7 +160,7 @@ public class Execute {
             subtotal += costoLinea;
             System.out.printf("- %d x %s (%.2f $/u) = %.2f $\n",
                     item.getCantidad(),
-                    item.getItem().getAlimento().getNombre(),
+                    item.getItem().getProducto().getNombre(),
                     item.getItem().getPrecio(),
                     costoLinea);
         }

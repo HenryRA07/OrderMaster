@@ -10,8 +10,6 @@ public abstract class MetodoPago {
         this.cantidad = cantidad;
     }
 
-
-
     public float getCantidad() {
         return cantidad;
     }

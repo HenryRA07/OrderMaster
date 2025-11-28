@@ -22,7 +22,7 @@ public abstract class Producto {
     }
 
     public void setNombre(String nombre) {
-        if(nombre==null || nombre.trim().isEmpty()){
+        if(nombre == null || nombre.trim().isEmpty()){
             throw new IllegalArgumentException("El nombre del producto es obligatorio");
         }
         this.nombre = nombre;

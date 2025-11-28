@@ -36,7 +36,7 @@ public class ComprobanteVenta {
         s.append("Fecha de Comprobante: " + this.fechaComprobante+"\n");
         s.append("Productos consumidos: \n");
         for(ItemPedido pedidos:pedido.getItemPedido()){
-            s.append(String.format("-%s -- %d -- %.2f\n",pedidos.getItem().getAlimento().getNombre(),
+            s.append(String.format("-%s -- %d -- %.2f\n",pedidos.getItem().getProducto().getNombre(),
                     pedidos.getCantidad(),pedidos.getSubtotal()));
         }
         s.append("---------------------------------------------------\n");

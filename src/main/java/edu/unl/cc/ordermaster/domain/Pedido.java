@@ -59,14 +59,6 @@ public class Pedido {
         return total;
     }
 
-//    public String getNombreCliente() {
-//        return nombreCliente;
-//    }
-//
-//    public void setNombreCliente(String nombreCliente) {
-//        this.nombreCliente = nombreCliente;
-//    }
-
     public int getMesa() {
         return mesa;
     }

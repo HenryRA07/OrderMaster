@@ -4,15 +4,15 @@ public class ItemMenu {
     private float precio;
     private boolean disponibilidad;
     //extensiones
-    private Alimento alimento;
+    private Producto producto;
 
     public ItemMenu() {
     }
 
-    public ItemMenu(float precio, boolean disponibilidad, Alimento alimento) {
+    public ItemMenu(float precio, boolean disponibilidad, Producto producto) {
         this.precio = precio;
         this.disponibilidad = disponibilidad;
-        this.alimento = alimento;
+        this.producto = producto;
     }
 
     public float getPrecio() {
@@ -31,12 +31,12 @@ public class ItemMenu {
         this.disponibilidad = disponibilidad;
     }
 
-    public Alimento getAlimento() {
-        return alimento;
+    public Producto getAlimento() {
+        return producto;
     }
 
-    public void setAlimento(Alimento alimento) {
-        this.alimento = alimento;
+    public void setAlimento(Producto producto) {
+        this.producto = producto;
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ItemMenu {
         return "ItemMenu{" +
                 "precio=" + precio +
                 ", disponibilidad=" + disponibilidad +
-                ", alimento=" + alimento +
+                ", alimento=" + producto +
                 '}';
     }
 }

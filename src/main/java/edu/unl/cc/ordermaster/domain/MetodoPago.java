@@ -1,4 +1,4 @@
 package edu.unl.cc.ordermaster.domain;
 
-public class MetodoPago {
+public abstract class MetodoPago {
 }

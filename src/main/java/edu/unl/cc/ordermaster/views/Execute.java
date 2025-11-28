@@ -5,10 +5,10 @@ import edu.unl.cc.ordermaster.domain.*;
 public class Execute {
     public static void main(String[] args) {
         Menu menu = new Menu("MenuDelDia", TipoMenu.DESAYUNO);
-        Alimento alimento1 = new Platillo("sancocho", "sopa de chanco espesa");
-        Alimento alimento2 = new Bebida("Limonada", "Jara de limonada");
-        ItemMenu itemMenu = new ItemMenu(15,true,alimento1);
-        ItemMenu itemMenu2 = new ItemMenu(16,true,alimento2);
+        Producto producto1 = new Platillo("sancocho", "sopa de chanco espesa");
+        Producto producto2 = new Bebida("Limonada", "Jara de limonada");
+        ItemMenu itemMenu = new ItemMenu(15,true, producto1);
+        ItemMenu itemMenu2 = new ItemMenu(16,true, producto2);
         menu.agregar(itemMenu);
         menu.agregar(itemMenu2);
         ItemPedido linea1 = new ItemPedido(2,itemMenu);

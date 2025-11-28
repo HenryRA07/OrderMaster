@@ -2,14 +2,14 @@ package edu.unl.cc.ordermaster.domain;
 
 import java.util.Objects;
 
-public abstract class Alimento {
+public abstract class Producto {
     private String nombre;
     private String descripcion;
 
-    public Alimento() {
+    public Producto() {
     }
 
-    public Alimento(String nombre, String descripcion) {
+    public Producto(String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
     }
@@ -33,8 +33,8 @@ public abstract class Alimento {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        Alimento alimento = (Alimento) o;
-        return Objects.equals(nombre, alimento.nombre) && Objects.equals(descripcion, alimento.descripcion);
+        Producto producto = (Producto) o;
+        return Objects.equals(nombre, producto.nombre) && Objects.equals(descripcion, producto.descripcion);
     }
 
     @Override

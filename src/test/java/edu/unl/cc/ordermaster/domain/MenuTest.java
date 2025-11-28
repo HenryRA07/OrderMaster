@@ -15,8 +15,8 @@ class MenuTest {
     @org.junit.jupiter.api.Test
     void agregar() {
         Menu menu = new Menu("MenuDelDia", TipoMenu.DESAYUNO);
-        Alimento alimento = new Platillo("sancocho", "sopa de chanco espesa");
-        ItemMenu itemMenu = new ItemMenu(15,true,alimento);
+        Producto producto = new Platillo("sancocho", "sopa de chanco espesa");
+        ItemMenu itemMenu = new ItemMenu(15,true, producto);
         menu.agregar(itemMenu);
         ItemPedido linea1 = new ItemPedido(3,itemMenu);
         System.out.println(linea1.getSubtotal());
@@ -27,10 +27,10 @@ class MenuTest {
     @org.junit.jupiter.api.Test
     void eliminar() {
         Menu menu = new Menu("MenuDelDia", TipoMenu.DESAYUNO);
-        Alimento alimento = new Platillo("sancocho", "sopa de chanco espesa");
-        Alimento alimento2 = new Platillo("tigrillo", "queso huevo frito");
-        ItemMenu itemMenu = new ItemMenu(15,true,alimento);
-        ItemMenu itemMenu2 = new ItemMenu(16,true,alimento2);
+        Producto producto = new Platillo("sancocho", "sopa de chanco espesa");
+        Producto producto2 = new Platillo("tigrillo", "queso huevo frito");
+        ItemMenu itemMenu = new ItemMenu(15,true, producto);
+        ItemMenu itemMenu2 = new ItemMenu(16,true, producto2);
         menu.agregar(itemMenu);
         menu.agregar(itemMenu2);
         menu.eliminar(itemMenu);

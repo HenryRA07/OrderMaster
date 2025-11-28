@@ -31,6 +31,14 @@ public class ItemMenu {
         this.disponibilidad = disponibilidad;
     }
 
+    public Alimento getAlimento() {
+        return alimento;
+    }
+
+    public void setAlimento(Alimento alimento) {
+        this.alimento = alimento;
+    }
+
     @Override
     public String toString() {
         return "ItemMenu{" +

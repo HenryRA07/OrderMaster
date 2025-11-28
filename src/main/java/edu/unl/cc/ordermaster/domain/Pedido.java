@@ -11,14 +11,16 @@ public class Pedido {
     private EstadoPedido estado;
     //relaciones
     private List<ItemPedido> itemPedido;
+    private Cliente cliente;
 
     public Pedido() {
     }
 
-    public Pedido(String nombreCliente, int mesa, String observacion, EstadoPedido estado) {
+    public Pedido(String nombreCliente, int mesa, String observacion, Cliente cliente) {
         this.nombreCliente = nombreCliente;
         this.mesa = mesa;
         this.observacion = observacion;
+        this.cliente = cliente;
     }
 
     public void agregarItem(ItemPedido item){
@@ -36,12 +38,12 @@ public class Pedido {
         }
     }
 
-    public void calcularTotal(){
+    public float calcularTotal(){
         float total = 0;
         for(ItemPedido item:itemPedido){
             total += item.getSubtotal();
         }
-        precioTotal=total;
+        return total;
     }
 
     public String getNombreCliente() {

@@ -5,11 +5,20 @@ import edu.unl.cc.ordermaster.domain.*;
 public class Execute {
     public static void main(String[] args) {
         Menu menu = new Menu("MenuDelDia", TipoMenu.DESAYUNO);
-        Alimento alimento = new Platillo("sancocho", "sopa de chanco espesa");
-        ItemMenu itemMenu = new ItemMenu(15,true,alimento);
+        Alimento alimento1 = new Platillo("sancocho", "sopa de chanco espesa");
+        Alimento alimento2 = new Bebida("Limonada", "Jara de limonada");
+        ItemMenu itemMenu = new ItemMenu(15,true,alimento1);
+        ItemMenu itemMenu2 = new ItemMenu(16,true,alimento2);
         menu.agregar(itemMenu);
-        System.out.println(menu.getTipoMenu());
-        menu.getItemMenu().forEach(item -> System.out.println(item));
+        menu.agregar(itemMenu2);
+        ItemPedido linea1 = new ItemPedido(2,itemMenu);
+        ItemPedido linea2 = new ItemPedido(3,itemMenu2);
+        Cliente persona1 = new Cliente("paco", "robert","11055432", "098776777","emai@gmauil.com");
+        Pedido pedido = new Pedido("paco", 3,"Sancocho sin limon",persona1 );
+        pedido.agregarItem(linea1);
+        pedido.agregarItem(linea2);
+        ComprobanteVenta venta1 = new ComprobanteVenta("ChamanBlack","223333",pedido);
+        System.out.println(venta1.generalComprobante());
 
     }
 }

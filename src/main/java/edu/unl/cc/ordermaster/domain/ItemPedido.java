@@ -10,9 +10,14 @@ public class ItemPedido {
     }
 
     public ItemPedido(int cantidad, ItemMenu item) {
-        this.cantidad = cantidad;
+        if(cantidad <= 0){
+            throw new IllegalArgumentException("La cantidad por lo menos debe ser uno");
+        }
+        if(item == null){
+            throw new IllegalArgumentException("Item no pueder estar vacio");
+        }
         this.item = item;
-        this.subtotal = calcularSubtotal();
+        this.cantidad = cantidad;
     }
 
     public float calcularSubtotal(){
@@ -24,6 +29,9 @@ public class ItemPedido {
     }
 
     public void setCantidad(int cantidad) {
+        if(cantidad <= 0){
+            throw new IllegalArgumentException("La cantidad por lo menos debe ser uno");
+        }
         this.cantidad = cantidad;
     }
 
@@ -32,15 +40,14 @@ public class ItemPedido {
     }
 
     public void setItem(ItemMenu item) {
+        if (item == null) {
+            throw new IllegalArgumentException("Item no puede estar vacio");
+        }
         this.item = item;
     }
 
     public float getSubtotal() {
-        return subtotal;
-    }
-
-    public void setSubtotal(float subtotal) {
-        this.subtotal = subtotal;
+        return calcularSubtotal();
     }
 
     @Override

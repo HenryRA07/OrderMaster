@@ -42,14 +42,18 @@ public class Pedido {
     }
 
     public void eliminarItem(ItemPedido item){
-        if(itemPedido.contains(item)){
-            itemPedido.remove(item);
+        if(item == null){
+            throw new IllegalArgumentException("El item no puede ser nulo");
         }
+        if(!itemPedido.contains(item)) {
+            throw new IllegalArgumentException("El item no puede ser eliminado");
+        }
+            itemPedido.remove(item);
     }
 
     private float calcularTotal(){
         float total = 0;
-        for(ItemPedido item:itemPedido){
+        for(ItemPedido item:itemPedido) {
             total += item.getSubtotal();
         }
         return total;

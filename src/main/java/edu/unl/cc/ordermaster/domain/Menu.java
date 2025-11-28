@@ -30,7 +30,13 @@ public class Menu {
         }
     }
 
-    public void eliminar(ItemMenu item){
+    public void eliminar (ItemMenu item){
+        if(itemMenu == null){
+            throw new IllegalArgumentException("La lista de items no está inicializada");
+        }
+        if(item == null){
+            throw new IllegalArgumentException("El item a eliminar no puede ser nulo");
+        }
         this.itemMenu.remove(item);
     }
 
@@ -63,6 +69,9 @@ public class Menu {
     }
 
     public void setItemMenu(List<ItemMenu> itemMenu) {
+        if (itemMenu==null){
+            throw new IllegalArgumentException("La lista de items no ha sido inicializada");
+        }
         this.itemMenu = itemMenu;
     }
 

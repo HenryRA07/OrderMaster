@@ -5,6 +5,9 @@ public class Efectivo extends MetodoPago{
 
     public Efectivo(float cantidad, float cambioEntregado) {
         super(cantidad);
+        if (cantidad <= 0) {
+            throw new IllegalArgumentException("El cantidad debe ser mayor a 0");
+        }
         this.cambioEntregado = cambioEntregado;
     }
 

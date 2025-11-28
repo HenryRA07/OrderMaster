@@ -1,6 +1,7 @@
 package edu.unl.cc.ordermaster.domain;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class ComprobanteVenta {
     private String nombreRestaurante;
@@ -8,23 +9,26 @@ public class ComprobanteVenta {
     private LocalDate fechaComprobante;
     //Relaciones
     private Pedido pedido;
+    private MetodoPago metodoPago;
 
     public ComprobanteVenta() {
         this.fechaComprobante = LocalDate.now();
     }
 
-    public ComprobanteVenta(String nombreRestaurante, String direccionRestaurante, Pedido pedido) {
+    public ComprobanteVenta(String nombreRestaurante, String direccionRestaurante, Pedido pedido, MetodoPago metodoPago) {
         this();
         this.nombreRestaurante = nombreRestaurante;
         this.direccionRestaurante = direccionRestaurante;
         this.pedido = pedido;
+        this.metodoPago = metodoPago;
     }
 
-    public String generalComprobante(){
+    public String generaComprobante(){
         StringBuilder s = new StringBuilder();
         s.append("----------------------------------------------------");
         s.append("Restaurante: " + this.nombreRestaurante+"\n");
         s.append("Direccion: " + this.direccionRestaurante+"\n");
+        s.append("Nombre Cliente: " + this.pedido.getCliente().getNombreCompleto()+"\n");
         s.append("Fecha de Comprobante: " + this.fechaComprobante+"\n");
         s.append("Productos consumidos: \n");
         for(ItemPedido pedidos:pedido.getItemPedido()){
@@ -32,7 +36,8 @@ public class ComprobanteVenta {
                     pedidos.getCantidad(),pedidos.getSubtotal()));
         }
         s.append("---------------------------------------------------\n");
-        s.append("Total pagar: "+pedido.calcularTotal());
+        s.append("Metodo de pago: " + metodoPago +"\n");
+        s.append("Total pagar: "+pedido.getPrecioTotal());
         return s.toString();
     }
 

@@ -26,4 +26,11 @@ public class Transferencia extends MetodoPago{
         this.numeroComprobante = numeroComprobante;
     }
 
+    @Override
+    public String toString() {
+        return "Transferencia [" + super.toString() +
+                "banco='" + banco + '\'' +
+                ", numeroComprobante='" + numeroComprobante + '\'' +
+                ']';
+    }
 }

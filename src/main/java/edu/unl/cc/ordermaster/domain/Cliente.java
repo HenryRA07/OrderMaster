@@ -1,5 +1,7 @@
 package edu.unl.cc.ordermaster.domain;
 
+import com.sun.jdi.PrimitiveValue;
+
 import java.util.Objects;
 
 public class Cliente {
@@ -18,6 +20,10 @@ public class Cliente {
         this.dni = dni;
         this.telefono = telefono;
         this.email = email;
+    }
+
+    public String getNombreCompleto(){
+        return getNombre() + " " + getApellido();
     }
 
     public String getNombre() {

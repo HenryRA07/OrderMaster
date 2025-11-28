@@ -15,4 +15,11 @@ public class Efectivo extends MetodoPago{
     public void setCambioEntregado(float cambioEntregado) {
         this.cambioEntregado = cambioEntregado;
     }
+
+    @Override
+    public String toString() {
+        return "Efectivo [" + super.toString() +
+                " cambioEntregado = " + cambioEntregado +
+                ']';
+    }
 }

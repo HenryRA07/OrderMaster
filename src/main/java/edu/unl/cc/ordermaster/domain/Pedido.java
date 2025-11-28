@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Pedido {
-    private String nombreCliente;
     private int mesa;
     private String observacion;
     private float precioTotal;
@@ -16,11 +15,15 @@ public class Pedido {
     public Pedido() {
     }
 
-    public Pedido(String nombreCliente, int mesa, String observacion, Cliente cliente) {
-        this.nombreCliente = nombreCliente;
+    public Pedido(int mesa, String observacion, Cliente cliente) {
         this.mesa = mesa;
         this.observacion = observacion;
         this.cliente = cliente;
+    }
+
+
+    private String getNombreCliente() {
+        return this.cliente.getNombreCompleto();
     }
 
     public void agregarItem(ItemPedido item){
@@ -32,13 +35,19 @@ public class Pedido {
         }
     }
 
+    public void agregarItems(ItemPedido... itemPedido){
+        for(ItemPedido items: itemPedido){
+            agregarItem(items);
+        }
+    }
+
     public void eliminarItem(ItemPedido item){
         if(itemPedido.contains(item)){
             itemPedido.remove(item);
         }
     }
 
-    public float calcularTotal(){
+    private float calcularTotal(){
         float total = 0;
         for(ItemPedido item:itemPedido){
             total += item.getSubtotal();
@@ -46,13 +55,13 @@ public class Pedido {
         return total;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
-    }
-
-    public void setNombreCliente(String nombreCliente) {
-        this.nombreCliente = nombreCliente;
-    }
+//    public String getNombreCliente() {
+//        return nombreCliente;
+//    }
+//
+//    public void setNombreCliente(String nombreCliente) {
+//        this.nombreCliente = nombreCliente;
+//    }
 
     public int getMesa() {
         return mesa;
@@ -71,7 +80,7 @@ public class Pedido {
     }
 
     public float getPrecioTotal() {
-        return precioTotal;
+        return calcularTotal();
     }
 
     public void setPrecioTotal(float precioTotal) {
@@ -86,10 +95,18 @@ public class Pedido {
         this.itemPedido = itemPedido;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     @Override
     public String toString() {
         return "Pedido{" +
-                "nombreCliente='" + nombreCliente + '\'' +
+                "nombreCliente='" + cliente.getNombreCompleto() + '\'' +
                 ", mesa=" + mesa +
                 ", observacion='" + observacion + '\'' +
                 ", precioTotal=" + precioTotal +

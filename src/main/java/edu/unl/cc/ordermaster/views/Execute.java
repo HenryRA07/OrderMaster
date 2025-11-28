@@ -13,12 +13,15 @@ public class Execute {
         menu.agregar(itemMenu2);
         ItemPedido linea1 = new ItemPedido(2,itemMenu);
         ItemPedido linea2 = new ItemPedido(3,itemMenu2);
-        Cliente persona1 = new Cliente("paco", "robert","11055432", "098776777","emai@gmauil.com");
-        Pedido pedido = new Pedido("paco", 3,"Sancocho sin limon",persona1 );
-        pedido.agregarItem(linea1);
-        pedido.agregarItem(linea2);
-        ComprobanteVenta venta1 = new ComprobanteVenta("ChamanBlack","223333",pedido);
-        System.out.println(venta1.generalComprobante());
+        Cliente persona1 = new Cliente("Henry", "Romero","11055432", "098776777","email@gmail.com");
+        Pedido pedido = new Pedido( 3,"Sancocho sin limon",persona1 );
+        pedido.agregarItems(linea1, linea2);
+        MetodoPago jaja = new Efectivo(100, 22);
+        MetodoPago jeje = new Transferencia(100, "PEpes", "03403249230");
+        ComprobanteVenta venta1 = new ComprobanteVenta("ShamanBlack","223333",pedido,jeje );
+        ComprobanteVenta venta2 = new ComprobanteVenta("ShamanBlack","223333",pedido,jaja );
+        System.out.println(venta1.generaComprobante());
+        System.out.println(venta2.generaComprobante());
 
     }
 }

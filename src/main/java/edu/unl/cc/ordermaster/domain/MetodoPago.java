@@ -7,6 +7,8 @@ public abstract class MetodoPago {
         this.cantidad = cantidad;
     }
 
+
+
     public float getCantidad() {
         return cantidad;
     }
@@ -15,4 +17,8 @@ public abstract class MetodoPago {
         this.cantidad = cantidad;
     }
 
+    @Override
+    public String toString() {
+        return "cantidad = " + cantidad + ", ";
+    }
 }

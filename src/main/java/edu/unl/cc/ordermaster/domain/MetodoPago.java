@@ -19,12 +19,10 @@ public abstract class MetodoPago {
     public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
-<<<<<<< Updated upstream
 
     @Override
     public String toString() {
         return "cantidad = " + cantidad + ", ";
     }
-=======
->>>>>>> Stashed changes
+
 }

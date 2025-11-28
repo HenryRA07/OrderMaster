@@ -23,14 +23,11 @@ public class ComprobanteVenta {
         this.metodoPago = metodoPago;
     }
 
-<<<<<<< Updated upstream
-    public String generaComprobante(){
-=======
+
     public String generalComprobante() throws IllegalArgumentException {
         if (pedido == null || pedido.getItemPedido() == null) {
             throw new IllegalArgumentException("No hay pedido para generar comprobante");
         }
->>>>>>> Stashed changes
         StringBuilder s = new StringBuilder();
         s.append("----------------------------------------------------");
         s.append("Restaurante: " + this.nombreRestaurante+"\n");

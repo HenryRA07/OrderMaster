@@ -37,7 +37,6 @@ public class Transferencia extends MetodoPago{
         }
         this.numeroComprobante = numeroComprobante;
     }
-<<<<<<< Updated upstream
 
     @Override
     public String toString() {
@@ -46,6 +45,5 @@ public class Transferencia extends MetodoPago{
                 ", numeroComprobante='" + numeroComprobante + '\'' +
                 ']';
     }
-=======
->>>>>>> Stashed changes
+
 }

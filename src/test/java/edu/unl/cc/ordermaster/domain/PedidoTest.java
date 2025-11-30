@@ -33,13 +33,14 @@ class PedidoTest {
 
         linea1 = new ItemPedido(2, item1);
         linea2 = new ItemPedido(3, item2);
-        linea3 = new ItemPedido(1, item3);
+        linea3 = new ItemPedido(4, item3);
         linea4 = new ItemPedido(2, item4);
         linea5 = new ItemPedido(3, item2);
 
-        pedidoTest = new Pedido(4, "Hola", clienteTest);
-        pedidoTest2 = new Pedido(5, "Hola", clienteTest2);
-
+        pedidoTest = new Pedido(4, "ninguna",  clienteTest);
+        pedidoTest2 = new Pedido(5, "Nada jajaj", clienteTest2);
+//        pedidoTest.cambiarEstado(EstadoPedido.PENDIENTE); ---Devolvera una excepcion
+        pedidoTest2.cambiarEstado(EstadoPedido.LISTO);
         item3 = new ItemMenu(12.00f, true, b1);
         linea3 = new ItemPedido(1, item3);  // 12.00
 
@@ -56,7 +57,10 @@ class PedidoTest {
     }
 
     @Test
-    void eliminarItem() {
-        //
+    void visualizarPedido() {
+        String mostrar = pedidoTest.visualizarPedido();
+        System.out.println("Mostrando el pedido: \n" + mostrar );
+        String mostrar2 = pedidoTest2.visualizarPedido();
+        System.out.println("Mostrando el pedido: \n" + mostrar2 );
     }
 }

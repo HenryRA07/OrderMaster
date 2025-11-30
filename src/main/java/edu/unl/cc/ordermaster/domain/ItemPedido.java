@@ -10,14 +10,12 @@ public class ItemPedido {
     }
 
     public ItemPedido(int cantidad, ItemMenu item) {
-        setCantidad(cantidad);
         setItem(item);
-        this.item = item;
-        this.cantidad = cantidad;
+        setCantidad(cantidad);
     }
 
-    public float calcularSubtotal(){
-        return this.cantidad * this.getItem().getPrecio();
+    private void calcularSubtotal(){
+        this.subtotal = this.cantidad * this.getItem().getPrecio();
     }
 
     public int getCantidad() {
@@ -29,6 +27,7 @@ public class ItemPedido {
             throw new IllegalArgumentException("La cantidad por lo menos debe ser uno");
         }
         this.cantidad = cantidad;
+        calcularSubtotal();
     }
 
     public ItemMenu getItem() {
@@ -43,7 +42,7 @@ public class ItemPedido {
     }
 
     public float getSubtotal() {
-        return calcularSubtotal();
+        return subtotal;
     }
 
     @Override

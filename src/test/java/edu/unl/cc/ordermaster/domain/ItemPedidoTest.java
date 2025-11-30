@@ -18,7 +18,11 @@ class ItemPedidoTest {
         producto = new Platillo("sancocho", "sopa de chanco espesa");
         itemMenu = new ItemMenu(15,true, producto);
         menu.agregar(itemMenu);
-        linea1 = new ItemPedido(-5,itemMenu);
+        linea1 = new ItemPedido(5,itemMenu);
+        System.out.println(linea1.getSubtotal());
+        linea1.setCantidad(1);
+        System.out.println(linea1.getSubtotal());
+        System.out.println(linea1.getCantidad());
 
     }
 

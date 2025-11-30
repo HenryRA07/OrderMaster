@@ -4,10 +4,7 @@ public abstract class MetodoPago {
     private float cantidad;
 
     public MetodoPago(float cantidad) {
-        if (cantidad <= 0){
-            throw new IllegalArgumentException("El cantidad debe ser mayor a 0");
-        }
-        this.cantidad = cantidad;
+        setCantidad(cantidad);
     }
 
     public float getCantidad() {
@@ -15,6 +12,9 @@ public abstract class MetodoPago {
     }
 
     public void setCantidad(float cantidad) {
+        if (cantidad <= 0){
+            throw new IllegalArgumentException("El cantidad debe ser mayor a 0");
+        }
         this.cantidad = cantidad;
     }
 

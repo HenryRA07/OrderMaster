@@ -21,18 +21,14 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-
-    private String getNombreCliente() {
-        return this.cliente.getNombreCompleto();
-    }
-
     public void agregarItem(ItemPedido item){
         if(itemPedido==null){
-            itemPedido=new ArrayList<>();
+            itemPedido = new ArrayList<>();
         }
         if(!itemPedido.contains(item)){
             itemPedido.add(item);
         }
+        calcularTotal();
     }
 
     public void agregarItems(ItemPedido... itemPedido){
@@ -48,15 +44,16 @@ public class Pedido {
         if(!itemPedido.contains(item)) {
             throw new IllegalArgumentException("El item no puede ser eliminado");
         }
-            itemPedido.remove(item);
+        itemPedido.remove(item);
+        calcularTotal();
     }
 
-    private float calcularTotal(){
+    private void calcularTotal(){
         float total = 0;
         for(ItemPedido item:itemPedido) {
             total += item.getSubtotal();
         }
-        return total;
+        precioTotal = total;
     }
 
     public int getMesa() {
@@ -76,7 +73,7 @@ public class Pedido {
     }
 
     public float getPrecioTotal() {
-        return calcularTotal();
+        return precioTotal;
     }
 
     public void setPrecioTotal(float precioTotal) {

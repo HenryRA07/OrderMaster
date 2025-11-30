@@ -1,5 +1,7 @@
 package edu.unl.cc.ordermaster.domain;
 
+import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class MenuTest {
@@ -35,5 +37,22 @@ class MenuTest {
         menu.agregar(itemMenu2);
         menu.eliminar(itemMenu);
         assertEquals(1,menu.getItemMenu().size());
+    }
+
+    @Test
+    void visualizarMenu() {
+        Menu menu = new Menu ("MenuDelDia", TipoMenu.DESAYUNO);
+        Producto producto = new Platillo("sancocho", "sopa de chanco espesa");
+        Producto producto2 = new Platillo("tigrillo", "queso huevo frito");
+        Producto producto3 = new Platillo("Repe", "Con guinero y lecche");
+        ItemMenu itemMenu = new ItemMenu(15,true, producto);
+        ItemMenu itemMenu2 = new ItemMenu(16,true, producto2);
+        ItemMenu itemMenu3 = new ItemMenu(17,true, producto3);
+        menu.agregar(itemMenu);
+        menu.agregar(itemMenu2);
+        menu.agregar(itemMenu3);
+        assertEquals(3,menu.getItemMenu().size());
+        System.out.println(menu.VisualizarMenu());
+
     }
 }

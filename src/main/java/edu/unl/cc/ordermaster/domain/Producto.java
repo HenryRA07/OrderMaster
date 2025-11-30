@@ -53,6 +53,6 @@ public abstract class Producto {
         return "Alimento{" +
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                '}';
+                '}' + "\n";
     }
 }

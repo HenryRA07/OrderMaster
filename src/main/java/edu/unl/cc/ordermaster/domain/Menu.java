@@ -12,7 +12,7 @@ public class Menu {
     private List<ItemMenu> itemMenu;
 
     public Menu() {
-        fechaCreacion =  LocalDate.now();
+        fechaCreacion = LocalDate.now();
     }
 
     public Menu(String nombreMenu, TipoMenu tipoMenu) {
@@ -21,20 +21,20 @@ public class Menu {
         this.tipoMenu = tipoMenu;
     }
 
-    public void agregar(ItemMenu item){
-        if(itemMenu==null){
-            itemMenu=new ArrayList<>();
+    public void agregar(ItemMenu item) {
+        if (itemMenu == null) {
+            itemMenu = new ArrayList<>();
         }
-        if(!this.itemMenu.contains(item)){
+        if (!this.itemMenu.contains(item)) {
             itemMenu.add(item);
         }
     }
 
-    public void eliminar (ItemMenu item){
-        if(itemMenu == null){
+    public void eliminar(ItemMenu item) {
+        if (itemMenu == null) {
             throw new IllegalArgumentException("La lista de items no está inicializada");
         }
-        if(item == null){
+        if (item == null) {
             throw new IllegalArgumentException("El item a eliminar no puede ser nulo");
         }
         this.itemMenu.remove(item);
@@ -69,18 +69,26 @@ public class Menu {
     }
 
     public void setItemMenu(List<ItemMenu> itemMenu) {
-        if (itemMenu==null){
+        if (itemMenu == null) {
             throw new IllegalArgumentException("La lista de items no ha sido inicializada");
         }
         this.itemMenu = itemMenu;
     }
 
+    public String VisualizarMenu() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("La fecha de creación es: ").append(fechaCreacion).append("\n");
+        sb.append("El nombre del menu es: ").append(nombreMenu).append("\n");
+        sb.append("El tipo de menu es: ").append(tipoMenu).append("\n");
+        sb.append("El menu disponible es: ").append("\n").append(itemMenu).append("\n");
+        return sb.toString();
+    }
+
     @Override
     public String toString() {
-        return "Menu{" +
+        return "Menu {" +
                 "fecharCreacion=" + fechaCreacion +
                 ", nombreMenu='" + nombreMenu + '\'' +
-                ", tipoMenu=" + tipoMenu +
-                '}';
+                ", tipoMenu=" + tipoMenu;
     }
 }

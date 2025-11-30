@@ -1,32 +1,29 @@
 package edu.unl.cc.ordermaster.domain;
 
-public class Efectivo extends MetodoPago{
+public class Efectivo extends MetodoPago {
     private float cambioEntregado;
-    private ComprobanteVenta comprobanteVenta;
+    private Pedido pedido;
 
-
-    public Efectivo(float cantidad, ComprobanteVenta comprobanteVenta) {
+    public Efectivo(float cantidad, Pedido pedido) {
         super(cantidad);
-        this.comprobanteVenta = comprobanteVenta;
+        this.pedido = pedido;
         cambio();
+    }
+
+    private void cambio() {
+        this.cambioEntregado = super.getCantidad() - this.pedido.getPrecioTotal();
     }
 
     public float getCambioEntregado() {
         return cambioEntregado;
     }
 
-    public void cambio(){
-        this.cambioEntregado = super.getCantidad() -  this.comprobanteVenta.getPedido().getPrecioTotal();
-    }
-
     public void setCambioEntregado(float cambioEntregado) {
-
         this.cambioEntregado = cambioEntregado;
     }
 
-
     @Override
     public String toString() {
-        return  "Efectivo dado: $" + super.getCantidad() +  "\n" + "Cambio a entregar: $" + this.cambioEntregado;
+        return  "Efectivo dado: $" + super.getCantidad() +  "\n" + "Cambio a entregar: $" + getCambioEntregado();
     }
 }

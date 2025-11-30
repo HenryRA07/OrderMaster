@@ -1,6 +1,7 @@
 package edu.unl.cc.ordermaster.domain;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ComprobanteVenta {
@@ -9,6 +10,7 @@ public class ComprobanteVenta {
     private LocalDate fechaComprobante;
     //Relaciones
     private Pedido pedido;
+    private List<ItemComprobante> itemComprobante;
     private MetodoPago metodoPago;
 
     public ComprobanteVenta() {
@@ -23,27 +25,68 @@ public class ComprobanteVenta {
         this.metodoPago = metodoPago;
     }
 
+    public void agregarItem(ItemComprobante item){
+        if(itemComprobante==null){
+            itemComprobante = new ArrayList<>();
+        }
+        if(!itemComprobante.contains(item)){
+            itemComprobante.add(item);
+        }
+    }
+
+    public void agregarItems(ItemComprobante... itemComprobantes){
+        for(ItemComprobante items: itemComprobantes){
+            agregarItem(items);
+        }
+    }
+
+    public void eliminarItem(ItemComprobante item){
+        if(item == null){
+            throw new IllegalArgumentException("El item no puede ser nulo");
+        }
+        if(!itemComprobante.contains(item)) {
+            throw new IllegalArgumentException("El item no puede ser eliminado");
+        }
+        itemComprobante.remove(item);
+    }
 
     public String generarComprobante() throws IllegalArgumentException {
         if (pedido == null || pedido.getItemPedido() == null) {
             throw new IllegalArgumentException("No hay pedido para generar comprobante");
         }
         StringBuilder s = new StringBuilder();
-        s.append("----------------------------------------------------");
+        s.append("----------------------------------------------------\n");
         s.append("Restaurante: " + this.nombreRestaurante+"\n");
         s.append("Direccion: " + this.direccionRestaurante+"\n");
         s.append("Nombre Cliente: " + this.pedido.getCliente().getNombreCompleto()+"\n");
         s.append("Fecha de Comprobante: " + this.fechaComprobante+"\n");
         s.append("Productos consumidos: \n");
-        for(ItemPedido pedidos:pedido.getItemPedido()){
-            s.append(String.format("-%s -- %d -- %.2f\n",pedidos.getItem().getProducto().getNombre(),
-                    pedidos.getCantidad(),pedidos.getSubtotal()));
+        if (itemComprobante != null && !itemComprobante.isEmpty()) {
+            s.append("| # | Item | Cantidad | Precio U. | Subtotal |\n");
+            s.append("|---|------|----------|-----------|----------|\n");
+
+
+            int contador = 1;
+            for (ItemComprobante item : itemComprobante) {
+
+                s.append(String.format("| %-1d | %-4s | %-4d | $%.2f | $%.2f |\n",
+                        contador++,
+                        item.getItem().getItem().getProducto().getNombre(),
+                        item.getItem().getCantidad(),
+                        item.getItem().getItem().getPrecio(),
+                        item.getItem().getSubtotal()));
+            }
+        } else {
+            s.append("No hay items agregados al pedido.\n");
         }
+        s.append("----------------------------\n");
         s.append("---------------------------------------------------\n");
-        s.append("Metodo de pago: " + metodoPago +"\n");
-        s.append("Total pagar: "+pedido.getPrecioTotal());
+        s.append("Metodo de pago: " + metodoPago.getClass().getSimpleName() +"\n");
+        s.append("Total pagar: $"+pedido.getPrecioTotal() + "\n");
+        s.append("" + metodoPago );
         return s.toString();
     }
+
 
     public String getNombreRestaurante() {
         return nombreRestaurante;

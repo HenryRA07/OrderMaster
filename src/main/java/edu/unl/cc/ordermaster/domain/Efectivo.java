@@ -2,28 +2,38 @@ package edu.unl.cc.ordermaster.domain;
 
 public class Efectivo extends MetodoPago{
     private float cambioEntregado;
+    private Pedido pedido;
 
-    public Efectivo(float cantidad, float cambioEntregado) {
+
+    public Efectivo(float cantidad, Pedido pedido) {
         super(cantidad);
-        if (cantidad <= 0) {
-            throw new IllegalArgumentException("El cantidad debe ser mayor a 0");
-        }
-        this.cambioEntregado = cambioEntregado;
+        this.pedido = pedido;
+        setCambioEntregado(cambio());
     }
 
     public float getCambioEntregado() {
-        // ToDo Dar Valor del cambio a dar
         return cambioEntregado;
     }
 
+    public float cambio(){
+        cambioEntregado = super.getCantidad() -  this.getPedido().getPrecioTotal();
+        return cambioEntregado;
+    }
     public void setCambioEntregado(float cambioEntregado) {
+
         this.cambioEntregado = cambioEntregado;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 
     @Override
     public String toString() {
-        return "Efectivo [" + super.toString() +
-                " cambioEntregado = " + cambioEntregado +
-                ']';
+        return  "Efectivo dado: $" + super.getCantidad() +  "\n" + "Cambio a entregar: $" + this.cambio();
     }
 }

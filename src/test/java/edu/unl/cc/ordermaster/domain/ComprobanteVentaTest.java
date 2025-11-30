@@ -45,17 +45,18 @@ class ComprobanteVentaTest {
         pedidoTest2.cambiarEstado(EstadoPedido.LISTO);
         item3 = new ItemMenu(12.00f, true, b1);
         linea3 = new ItemPedido(1, item3);
-        MetodoPago metodoPago1 = new Efectivo(100,pedidoTest);
+
 
         itemComprobante1 = new ItemComprobante(linea1);
         itemComprobante2 = new ItemComprobante(linea2);
         itemComprobante3 = new ItemComprobante(linea3);
         itemComprobante = new ItemComprobante(linea4);
 
-
+        MetodoPago metodoPago1 = new Efectivo(100,comprobanteVenta);
         pedidoTest.agregarItems(linea1, linea2, linea3);
         comprobanteVenta = new ComprobanteVenta("sdfsd", "sdfsd", pedidoTest, metodoPago1);
         comprobanteVenta.agregarItems(itemComprobante, itemComprobante1, itemComprobante2, itemComprobante3);
+
     }
 
     @Test

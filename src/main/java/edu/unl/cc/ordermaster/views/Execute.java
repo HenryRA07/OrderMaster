@@ -1,7 +1,9 @@
 package edu.unl.cc.ordermaster.views;
 
+import com.itextpdf.text.DocumentException;
 import edu.unl.cc.ordermaster.domain.*;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -222,6 +224,13 @@ public class Execute {
         System.out.println("\n*** COMPROBANTE DE VENTA GENERADO ***");
 
         System.out.println(venta.generarComprobante());
+        try {
+            venta.generarPDF();
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         System.out.println("****************************************");
         System.out.println("¡PEDIDO FINALIZADO CON ÉXITO!");
     }

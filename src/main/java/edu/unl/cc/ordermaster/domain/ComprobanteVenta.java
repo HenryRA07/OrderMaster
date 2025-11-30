@@ -1,5 +1,8 @@
 package edu.unl.cc.ordermaster.domain;
 
+import com.itextpdf.text.DocumentException;
+
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -10,6 +13,8 @@ public class ComprobanteVenta {
     //Relaciones
     private Pedido pedido;
     private MetodoPago metodoPago;
+    private PDFgenerator pdf;
+    private Gmail gmail;
 
     public ComprobanteVenta() {
         this.fechaComprobante = LocalDate.now();
@@ -29,7 +34,7 @@ public class ComprobanteVenta {
             throw new IllegalArgumentException("No hay pedido para generar comprobante");
         }
         StringBuilder s = new StringBuilder();
-        s.append("----------------------------------------------------");
+        s.append("----------------------------------------------------\n");
         s.append("Restaurante: " + this.nombreRestaurante+"\n");
         s.append("Direccion: " + this.direccionRestaurante+"\n");
         s.append("Nombre Cliente: " + this.pedido.getCliente().getNombreCompleto()+"\n");
@@ -43,6 +48,16 @@ public class ComprobanteVenta {
         s.append("Metodo de pago: " + metodoPago +"\n");
         s.append("Total pagar: "+pedido.getPrecioTotal());
         return s.toString();
+    }
+
+    public void generarPDF() throws DocumentException, FileNotFoundException {
+        pdf = new PDFgenerator();
+        pdf.generar(generarComprobante());
+        enviarCorreo();
+    }
+    private void enviarCorreo() {
+        gmail = new Gmail();
+        gmail.enviarEmail(this.pedido.getCliente().getEmail(),this.fechaComprobante,"Evio comprobante de venta", "Se adjunta el archivo pdf en este mensaje");
     }
 
     public String getNombreRestaurante() {

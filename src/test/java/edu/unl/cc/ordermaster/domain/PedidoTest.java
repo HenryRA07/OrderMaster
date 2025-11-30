@@ -1,7 +1,10 @@
 package edu.unl.cc.ordermaster.domain;
 
+import com.itextpdf.text.DocumentException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.io.FileNotFoundException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +21,7 @@ class PedidoTest {
     void setUp() {
 
         menu1 = new Menu("MenuLunes", TipoMenu.ALMUERZO);
-        clienteTest = new Cliente("Juan", "Pérez", "03243202", "098789458", "email.google.com");
+        clienteTest = new Cliente("Juan", "Pérez", "03243202", "098789458", "franz.ludena0907@gmail.com");
         clienteTest2 = new Cliente("Maria", "Lopez", "03243203", "098123456", "maria@test.com");
 
         p1 = new Platillo("Tacos de Barbacoa", "Descripción");
@@ -60,6 +63,15 @@ class PedidoTest {
     void visualizarPedido() {
         String mostrar = pedidoTest.visualizarPedido();
         System.out.println("Mostrando el pedido: \n" + mostrar );
+        MetodoPago met = new Efectivo(50,10);
+        ComprobanteVenta comp = new ComprobanteVenta("chaman","223", pedidoTest,met);
+        try {
+            comp.generarPDF();
+        } catch (DocumentException e) {
+            throw new RuntimeException(e);
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
         String mostrar2 = pedidoTest2.visualizarPedido();
         System.out.println("Mostrando el pedido: \n" + mostrar2 );
     }

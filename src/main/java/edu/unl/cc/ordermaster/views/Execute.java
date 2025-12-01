@@ -2,8 +2,7 @@ package edu.unl.cc.ordermaster.views;
 
 import com.itextpdf.text.DocumentException;
 import edu.unl.cc.ordermaster.domain.*;
-
-import java.io.FileNotFoundException;
+import java.io.FileNotFoundException; 
 import java.util.List;
 import java.util.Scanner;
 
@@ -24,204 +23,167 @@ public class Execute {
         menuDia.agregar(itemMenu4);
         return menuDia;
     }
-
-    private static void mostrarMenu(Menu menu) {
-        System.out.println("\n--- " + menu.getNombreMenu() + " (" + menu.getTipoMenu() + ") ---");
-        int contador = 1;
-        for (ItemMenu item : menu.getItemMenu()) {
-            System.out.printf("%d. %s - %.2f $\n", contador++, item.getProducto().getNombre(), item.getPrecio());
-        }
-        System.out.println("----------------------------------------------");
-    }
-
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
         Menu menuDia = inicializarMenu();
-        Pedido pedidoActual = null;
+        Pedido pedido = null;
         Cliente cliente = null;
 
-        System.out.println(" Bienvenido al Sistema de Pedidos!");
+        System.out.println("GESTION DE PEDIDOS");
 
-        System.out.println("\n--- Registro de Cliente ---");
-        System.out.print("Ingrese su Nombre: ");
-        String nombre = scanner.nextLine();
-        System.out.print("Ingrese su Apellido: ");
-        String apellido = scanner.nextLine();
-        System.out.print("Ingrese su Cédula: ");
-        String cedula = scanner.nextLine();
-        System.out.print("Ingrese su teléfono: ");
-        String telefono = scanner.nextLine();
-        System.out.print("Ingrese su email: ");
-        String email = scanner.nextLine();
-        System.out.print("Ingrese el numero de mesa: ");
-        int mesa = scanner.nextInt();
-        scanner.nextLine();
+        System.out.println("\n---DATOS DEL CLIENTE---");
+        System.out.println("Nombre del cliente");
+        String nombre = sc.nextLine();
+        System.out.println("Apellido del cliente");
+        String apellido = sc.nextLine();
+        System.out.println("Cédula del cliente");
+        String cedula = sc.nextLine();
+        System.out.println("Numero de telefono");
+        String telefono = sc.nextLine();
+        System.out.println("Email del cliente");
+        String email = sc.nextLine();
+        System.out.println("Numero de mesa");
+        int mesa = sc.nextInt();
+
+        sc.nextLine();
 
         cliente = new Cliente(nombre, apellido, cedula, telefono, email);
-        pedidoActual = new Pedido(mesa, "", cliente);
-
-        System.out.println(" Cliente " + cliente.getNombre() + " " + cliente.getApellido() + " registrado. Iniciando pedido...");
-
+        pedido = new Pedido(mesa, "", cliente);
+        System.out.println(" Cliente " + cliente.getNombre() + " " + cliente.getApellido() + " registrado ... Iniciando pedido...");
         int opcion;
         boolean salir = false;
 
         while (!salir) {
             System.out.println("\n--- Menú Principal ---");
-            System.out.println("1. Ver Menú del Día y Agregar Items");
-            System.out.println("2. Ver Resumen del Pedido Actual");
-            System.out.println("3. Finalizar y Pagar Pedido");
+            System.out.println("1. Ver Menú del Día");
+            System.out.println("2. Realizar Pedido");
+            System.out.println("3. Confirmar Pedido");
             System.out.println("4. Salir");
             System.out.print("Seleccione una opción: ");
-
             try {
-                opcion = scanner.nextInt();
-                scanner.nextLine();
+                opcion = sc.nextInt();
+                sc.nextLine();
 
                 switch (opcion) {
                     case 1:
-                        agregarItemsAPedido(menuDia, pedidoActual, scanner);
+                        System.out.println(menuDia.visualizarMenu());
                         break;
                     case 2:
-                        mostrarResumenPedido(pedidoActual);
+                        while (true) {
+
+                            List<ItemMenu> items = menuDia.getItemMenu();
+                            if (items == null || items.isEmpty()) {
+                                System.out.println(" El menú está vacío.");
+                                break;
+                            }
+
+                            System.out.println("\n--- MENÚ DEL DÍA ---");
+                            for (int i = 0; i < items.size(); i++) {
+                                ItemMenu it = items.get(i);
+                                System.out.printf("%d. %s - $%.2f (%s)%n",
+                                        i + 1,
+                                        it.getProducto().getNombre(),
+                                        it.getPrecio(),
+                                        it.getProducto().getDescripcion());
+                            }
+
+                            System.out.print("\nSeleccione producto (0 para salir): ");
+                            int seleccion = sc.nextInt();
+                            sc.nextLine();
+
+                            if (seleccion == 0) break;
+                            if (seleccion < 1 || seleccion > items.size()) {
+                                System.out.println(" Selección inválida.");
+                                continue;
+                            }
+
+                            ItemMenu elegir = items.get(seleccion - 1);
+
+                            System.out.print("Cantidad: ");
+                            int cantidad = sc.nextInt();
+                            sc.nextLine();
+
+                            if (cantidad <= 0) {
+                                System.out.println(" Cantidad inválida.");
+                                continue;
+                            }
+
+                            ItemPedido itemPedido = new ItemPedido(cantidad, elegir);
+                            pedido.agregarItem(itemPedido);
+
+                            System.out.println(" Producto agregado.");
+
+                            System.out.print("¿Agregar otro producto? (si/no): ");
+                            String respuesta = sc.nextLine();
+
+                            if (respuesta.equalsIgnoreCase("no")) {
+                                System.out.println("Observación:");
+                                String observacion = sc.nextLine();
+                                pedido.setObservacion(observacion);
+                                break;
+                            }
+                        }
+                        System.out.println("\n--- PEDIDO ACTUAL ---");
+                        System.out.println(pedido.visualizarPedido());
                         break;
                     case 3:
-                        finalizarPedido(pedidoActual, scanner);
-                        salir = true;
+                        System.out.println("\n--- Opciones de Pago ---");
+                        System.out.println("1. Efectivo");
+                        System.out.println("2. Transferencia Bancaria");
+                        System.out.print("Seleccione el método de pago: ");
+                        int opcionPago = sc.nextInt();
+                        sc.nextLine();
+
+                        MetodoPago metodoPago = null;
+
+                        if (opcionPago == 1) {
+                            System.out.print("Monto entregado por el cliente: ");
+                            float entregado = sc.nextFloat();
+                            sc.nextLine();
+                            Efectivo efectivo = new Efectivo(entregado,pedido);
+                            System.out.printf("Cambio a devolver: %.2f $\n", efectivo.getCambioEntregado());
+                            System.out.println();
+
+                        } else if (opcionPago == 2) {
+
+                            System.out.println("Monto depositado por el cliente: ");
+                            float depositado = sc.nextFloat();
+                            System.out.println("Nombre del banco");
+                            String banco = sc.nextLine();
+                            sc.nextLine();
+                            System.out.print("Número de cuenta/referencia: ");
+                            String cuenta = sc.nextLine();
+
+                            Transferencia transferencia = new Transferencia(depositado,banco,cuenta);
+                            System.out.println("Procesando transferencia...");
+                            System.out.println("Tranferencia exitisamente...");
+
+                        } else {
+                            System.out.println(" Opción de pago no válida. Cancelando proceso de venta.");
+                        }
                         break;
-                    case 4:
-                        System.out.println(" Gracias por su visita. Hasta pronto!");
-                        salir = true;
-                        break;
+                        case 4:
+                            System.out.println(" Gracias por su visita. Hasta pronto!");
+                            salir = true;
+                            break;
                     default:
                         System.out.println("Opción no válida. Intente de nuevo.");
                 }
             } catch (java.util.InputMismatchException e) {
                 System.out.println(" Entrada no válida. Por favor, ingrese un número.");
-                scanner.nextLine();
+                sc.nextLine();
             } catch (Exception e) {
                 System.out.println(" Ocurrió un error: " + e.getMessage());
-                scanner.nextLine();
+                sc.nextLine();
             }
         }
-        scanner.close();
+        sc.close();
     }
+}
 
-    private static void agregarItemsAPedido(Menu menu, Pedido pedido, Scanner scanner) {
-        mostrarMenu(menu);
 
-        List<ItemMenu> itemsMenu = menu.getItemMenu();
 
-        while (true) {
-            System.out.print("Ingrese el número del item a pedir (0 para terminar): ");
-            int numItem = scanner.nextInt();
-            scanner.nextLine();
 
-            if (numItem == 0) {
-                System.out.print(" Ingrese comentario/observación del cliente: ");
-                String observacion = scanner.nextLine();
-
-                if (observacion != null && !observacion.trim().isEmpty()) {
-                }
-                break;
-            }
-
-            if (numItem >= 1 && numItem <= itemsMenu.size()) {
-                ItemMenu itemSeleccionado = itemsMenu.get(numItem - 1);
-
-                System.out.print("Ingrese la cantidad (unidades): ");
-                int cantidad = scanner.nextInt();
-                scanner.nextLine();
-
-                if (cantidad > 0) {
-                    ItemPedido linea = new ItemPedido(cantidad, itemSeleccionado);
-                    pedido.agregarItems(linea);
-                    System.out.println(" " + cantidad + "x " + itemSeleccionado.getProducto().getNombre() + " agregado/s al pedido.");
-                } else {
-                    System.out.println(" La cantidad debe ser mayor a cero.");
-                }
-            } else {
-                System.out.println(" Número de item no válido.");
-            }
-        }
-    }
-
-    private static void mostrarResumenPedido(Pedido pedido) {
-        // Asumiendo que Pedido tiene un getMesa()
-        System.out.println("\n--- Resumen del Pedido (Mesa #" + pedido.getMesa() + ") ---");
-
-        List<ItemPedido> itemsPedido = pedido.getItemPedido();
-
-        if (itemsPedido == null || itemsPedido.isEmpty()) {
-            System.out.println("El pedido está vacío.");
-            return;
-        }
-
-        double subtotal = 0;
-        for (ItemPedido item : itemsPedido) {
-            double costoLinea = item.getCantidad() * item.getItem().getPrecio();
-            subtotal += costoLinea;
-            System.out.printf("- %d x %s (%.2f $/u) = %.2f $\n",
-                    item.getCantidad(),
-                    item.getItem().getProducto().getNombre(),
-                    item.getItem().getPrecio(),
-                    costoLinea);
-        }
-
-        double total = subtotal;
-
-        System.out.printf("Subtotal: %.2f $\n", subtotal);
-        System.out.printf("**TOTAL A PAGAR: %.2f $**\n", total);
-        System.out.println("----------------------------------------------");
-    }
-
-    private static void finalizarPedido(Pedido pedido, Scanner scanner) {
-        List<ItemPedido> itemsPedido = pedido.getItemPedido();
-        if (itemsPedido == null || itemsPedido.isEmpty()) {
-            System.out.println(" No se puede finalizar un pedido vacío.");
-            return;
-        }
-
-        mostrarResumenPedido(pedido);
-
-        System.out.println("\n--- Opciones de Pago ---");
-        System.out.println("1. Efectivo");
-        System.out.println("2. Transferencia Bancaria");
-        System.out.print("Seleccione el método de pago: ");
-        int opcionPago = scanner.nextInt();
-        scanner.nextLine();
-
-        MetodoPago metodoPago = null;
-
-        float totalPedido =(float) itemsPedido.stream()
-                .mapToDouble(item -> item.getCantidad() * item.getItem().getPrecio())
-                .sum();
-
-        switch (opcionPago) {
-            case 1:
-                System.out.print("Monto entregado por el cliente: ");
-                float entregado = scanner.nextFloat();
-                scanner.nextLine();
-                double cambio =  entregado - totalPedido;
-
-                metodoPago = new Efectivo(entregado, totalPedido);
-                System.out.printf("Cambio a devolver: %.2f $\n", cambio);
-                break;
-            case 2:
-                System.out.print("Nombre del titular de la cuenta: ");
-                String titular = scanner.nextLine();
-                System.out.print("Número de cuenta/referencia: ");
-                String cuenta = scanner.nextLine();
-
-                metodoPago = new Transferencia(totalPedido, titular, cuenta);
-                System.out.println("Procesando transferencia...");
-                break;
-            default:
-                System.out.println(" Opción de pago no válida. Cancelando proceso de venta.");
-                return;
-        }
-
-        ComprobanteVenta venta = new ComprobanteVenta("ShamanBlack", "RUC1234567890", pedido, metodoPago);
-        System.out.println("\n*** COMPROBANTE DE VENTA GENERADO ***");
 
         System.out.println(venta.generarComprobante());
         try {
@@ -235,6 +197,7 @@ public class Execute {
         System.out.println("¡PEDIDO FINALIZADO CON ÉXITO!");
     }
 }
+
 //        Menu menu = new Menu("MenuDelDia", TipoMenu.DESAYUNO);
 //        Producto producto1 = new Platillo("sancocho", "sopa de chanco espesa");
 //        Producto producto2 = new Bebida("Limonada", "Jara de limonada");
@@ -253,6 +216,4 @@ public class Execute {
 //        ComprobanteVenta venta2 = new ComprobanteVenta("ShamanBlack","223333",pedido,jaja );
 //        System.out.println(venta1.generaComprobante());
 //        System.out.println(venta2.generaComprobante());
-
-
 

@@ -50,9 +50,9 @@ public abstract class Producto {
 
     @Override
     public String toString() {
-        return "Alimento{" +
+        return "Producto{" +
                 "nombre='" + nombre + '\'' +
                 ", descripcion='" + descripcion + '\'' +
-                '}' + "\n";
+                '}'+ " " + "\n";
     }
 }

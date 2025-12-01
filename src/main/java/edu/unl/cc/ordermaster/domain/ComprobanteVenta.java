@@ -1,5 +1,8 @@
 package edu.unl.cc.ordermaster.domain;
 
+import com.itextpdf.text.DocumentException;
+
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +15,8 @@ public class ComprobanteVenta {
     private Pedido pedido;
     private List<ItemComprobante> itemComprobante;
     private MetodoPago metodoPago;
+    private PDFgenerator pdf;
+    private Gmail gmail;
 
     public ComprobanteVenta() {
         this.fechaComprobante = LocalDate.now();
@@ -87,6 +92,15 @@ public class ComprobanteVenta {
         return s.toString();
     }
 
+    public void generarPDF() throws DocumentException, FileNotFoundException {
+        pdf = new PDFgenerator();
+        pdf.generar(generarComprobante(), pedido.getCliente().getNombreCompleto());
+        enviarCorreo();
+    }
+    private void enviarCorreo() {
+        gmail = new Gmail();
+        gmail.enviarEmail(this.pedido.getCliente().getEmail(),this.fechaComprobante,pedido.getCliente().getNombreCompleto());
+    }
 
     public String getNombreRestaurante() {
         return nombreRestaurante;

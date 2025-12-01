@@ -139,7 +139,7 @@ public class Execute {
                             float entregado = sc.nextFloat();
                             sc.nextLine();
                             Efectivo efectivo = new Efectivo(entregado,pedido);
-                            System.out.printf("Cambio a devolver: %.2f $\n", efectivo.cambio());
+                            System.out.printf("Cambio a devolver: %.2f $\n", efectivo.getCambioEntregado());
                             System.out.println();
 
                         } else if (opcionPago == 2) {

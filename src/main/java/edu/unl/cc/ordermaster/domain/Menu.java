@@ -109,16 +109,6 @@ public class Menu {
         this.itemMenu = itemMenu;
     }
 
-    
-    public String visualizarMenu() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("La fecha de creación es: ").append(fechaCreacion).append("\n");
-        sb.append("El nombre del menu es: ").append(nombreMenu).append("\n");
-        sb.append("El tipo de menu es: ").append(tipoMenu).append("\n");
-        sb.append("El menu disponible es: ").append("\n").append(itemMenu).append("\n");
-        return sb.toString();
-    }
-
     @Override
     public String toString() {
         return "Menu {" +

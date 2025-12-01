@@ -11,8 +11,6 @@ public class ItemComprobante {
         this.item = item;
     }
 
-
-
     public ItemPedido getItem() {
         return item;
     }

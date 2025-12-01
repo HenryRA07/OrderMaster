@@ -10,8 +10,9 @@ public class Efectivo extends MetodoPago {
         cambio();
     }
 
-    private void cambio() {
+    private float cambio() {
         this.cambioEntregado = super.getCantidad() - this.pedido.getPrecioTotal();
+        return cambioEntregado;
     }
 
     public float getCambioEntregado() {

@@ -41,7 +41,7 @@ class MenuTest {
     private Pedido pedidoTest;
     @Test
     void visualizarMenu() {
-        Menu menuDía = new Menu("MenuDelDia", TipoMenu.DESAYUNO);
+        Menu menu = new Menu ("MenuDelDia", TipoMenu.DESAYUNO);
         Producto producto = new Platillo("sancocho", "sopa de chanco espesa");
         Producto producto2 = new Platillo("tigrillo", "queso huevo frito");
         Producto producto3 = new Platillo("Repe", "Con guinero y lecche");
@@ -53,12 +53,5 @@ class MenuTest {
         menu.agregar(itemMenu3);
         assertEquals(3,menu.getItemMenu().size());
         System.out.println(menu.visualizarMenu());
-        ItemMenu itemMenu = new ItemMenu(15, true, producto);
-        ItemMenu itemMenu2 = new ItemMenu(16, true, producto2);
-        ItemMenu itemMenu3 = new ItemMenu(17, false, producto3);
-        menuDía.agregar(itemMenu);
-        menuDía.agregar(itemMenu2);
-        menuDía.agregar(itemMenu3);
-        System.out.println(menuDía.visualizarMenu());
     }
 }

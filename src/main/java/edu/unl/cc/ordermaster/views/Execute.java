@@ -142,19 +142,37 @@ public class Execute {
                             sc.nextLine();
                             Efectivo efectivo = new Efectivo(entregado,pedido);
                             System.out.printf("Cambio a devolver: %.2f $\n", efectivo.getCambioEntregado());
+                            ComprobanteVenta venta = new ComprobanteVenta("Chaman Black", "nose",pedido,efectivo);
+                            System.out.println(venta.generarComprobante());
+                            try {
+                                venta.generarPDF();
+                            } catch (DocumentException e) {
+                                throw new RuntimeException(e);
+                            } catch (FileNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
                             System.out.println();
 
                         } else if (opcionPago == 2) {
 
-                            System.out.println("Monto depositado por el cliente: ");
+                            System.out.print("Monto depositado por el cliente: ");
                             float depositado = sc.nextFloat();
-                            System.out.println("Nombre del banco");
+                            System.out.print("Nombre del banco: ");
                             String banco = sc.nextLine();
                             sc.nextLine();
                             System.out.print("Número de cuenta/referencia: ");
                             String cuenta = sc.nextLine();
 
                             Transferencia transferencia = new Transferencia(depositado,banco,cuenta);
+                            ComprobanteVenta venta = new ComprobanteVenta("Chaman Black", "nose",pedido,transferencia);
+                            System.out.println(venta.generarComprobante());
+                            try {
+                                venta.generarPDF();
+                            } catch (DocumentException e) {
+                                throw new RuntimeException(e);
+                            } catch (FileNotFoundException e) {
+                                throw new RuntimeException(e);
+                            }
                             System.out.println("Procesando transferencia...");
                             System.out.println("Tranferencia exitisamente...");
 
@@ -176,27 +194,13 @@ public class Execute {
                 System.out.println(" Ocurrió un error: " + e.getMessage());
                 sc.nextLine();
             }
+            System.out.println("****************************************");
+            System.out.println("¡PEDIDO FINALIZADO CON ÉXITO!");
         }
         sc.close();
     }
 }
 
-
-
-
-
-        System.out.println(venta.generarComprobante());
-        try {
-            venta.generarPDF();
-        } catch (DocumentException e) {
-            throw new RuntimeException(e);
-        } catch (FileNotFoundException e) {
-            throw new RuntimeException(e);
-        }
-        System.out.println("****************************************");
-        System.out.println("¡PEDIDO FINALIZADO CON ÉXITO!");
-    }
-}
 
 //        Menu menu = new Menu("MenuDelDia", TipoMenu.DESAYUNO);
 //        Producto producto1 = new Platillo("sancocho", "sopa de chanco espesa");

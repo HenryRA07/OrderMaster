@@ -50,6 +50,6 @@ public class ItemMenu {
         return "ItemMenu{" +
                 "precio=" + precio +
                 ", disponibilidad=" + disponibilidad +
-                ", alimento=" + producto;
+                ", alimento=" + "}" + producto;
     }
 }

@@ -21,6 +21,41 @@ public class Menu {
         this.tipoMenu = tipoMenu;
     }
 
+    public String visualizarMenu (){
+        StringBuilder menu = new StringBuilder();
+
+        menu.append("---MENÚ DEL DÍA---\n");
+        menu.append("------------------\n");
+
+        menu.append("Fecha de creación: ").append(fechaCreacion).append("\n");
+        menu.append("Nombre de menu: ").append(nombreMenu != null ? nombreMenu : "Sin nombre").append("\n");
+        menu.append("Tipo demenu: ").append(tipoMenu != null ? tipoMenu : "No especificado").append("\n");
+
+        menu.append("\n---Items Disponibles---\n");
+
+        if (itemMenu != null && !itemMenu.isEmpty()) {
+            menu.append("| # | Producto     | Precio | Disponible |\n");
+            menu.append("|---|--------------|--------|------------|\n");
+            int contador = 1;
+            for (ItemMenu item : itemMenu) {
+                menu.append(String.format(
+                        "| %-1d | %-12s | $%-5.2f | %-10s |\n",
+                        contador++,
+                        item.getProducto().getNombre(),
+                        item.getPrecio(),
+                        item.getDisponibilidad() ? "Sí" : "No"));
+            }
+        } else {
+            menu.append("No hay items disponibles en este menú.\n");
+        }
+
+        menu.append("\n-----------------------\n");
+        menu.append("Total de items: ").append(itemMenu != null ? itemMenu.size() : 0).append("\n");
+        menu.append("\n-----------------------\n");
+
+        return menu.toString();
+    }
+
     public void agregar(ItemMenu item) {
         if (itemMenu == null) {
             itemMenu = new ArrayList<>();
@@ -75,20 +110,20 @@ public class Menu {
         this.itemMenu = itemMenu;
     }
 
-    public String VisualizarMenu() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("La fecha de creación es: ").append(fechaCreacion).append("\n");
-        sb.append("El nombre del menu es: ").append(nombreMenu).append("\n");
-        sb.append("El tipo de menu es: ").append(tipoMenu).append("\n");
-        sb.append("El menu disponible es: ").append("\n").append(itemMenu).append("\n");
-        return sb.toString();
-    }
+//    public String VisualizarMenu() {
+//        StringBuilder sb = new StringBuilder();
+//        sb.append("La fecha de creación es: ").append(fechaCreacion).append("\n");
+//        sb.append("El nombre del menu es: ").append(nombreMenu).append("\n");
+//        sb.append("El tipo de menu es: ").append(tipoMenu).append("\n");
+//        sb.append("El menu disponible es: ").append("\n").append(itemMenu).append("\n");
+//        return sb.toString();
+//    }
 
     @Override
     public String toString() {
         return "Menu {" +
                 "fecharCreacion=" + fechaCreacion +
                 ", nombreMenu='" + nombreMenu + '\'' +
-                ", tipoMenu=" + tipoMenu;
+                ", tipoMenu=" + "}" + tipoMenu;
     }
 }

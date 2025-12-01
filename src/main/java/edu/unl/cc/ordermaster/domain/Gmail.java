@@ -12,8 +12,8 @@ import java.util.Properties;
 public class Gmail {
     private static String email = "arevalofranz2007@gmail.com";
     private static String pass = "vaek lehp prqv bogs";
-
-
+    private String subject = "Envio Comprobante De Venta";
+    private String content = "Se Adjunta el comprobante de venta en archivo PDF";
     private Session session;
 
     private void propiedadesEmail() {
@@ -35,20 +35,20 @@ public class Gmail {
         session = Session.getInstance(props, auth);
     }
 
-    public void enviarEmail(String emailto, LocalDate fecha,String subject, String content) {
+    public void enviarEmail(String emailto, LocalDate fecha,String nombre) {
         propiedadesEmail();
         try {
             MimeMessage mensaje = new MimeMessage(session);
             mensaje.setFrom(new InternetAddress(email));
             mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(emailto));
-            mensaje.setSubject(subject);
+            mensaje.setSubject(this.subject);
             mensaje.setSentDate(Date.from(fecha.atStartOfDay(ZoneId.systemDefault()).toInstant()));
             MimeBodyPart cuerpoMensaje = new MimeBodyPart();
             cuerpoMensaje.setContent(content, "text/html;charset=utf-8");
             Multipart multiparte = new MimeMultipart();
             multiparte.addBodyPart(cuerpoMensaje);
             MimeBodyPart adjunto = new MimeBodyPart();
-            adjunto.attachFile("D:\\\\Usuarios\\\\Franz\\\\Documentacion\\\\reporte.pdf");
+            adjunto.attachFile("D:\\\\Usuarios\\\\Franz\\\\Documentacion\\\\Comprovante"+nombre+".pdf");
             multiparte.addBodyPart(adjunto);
             mensaje.setContent(multiparte);
             Transport.send(mensaje);

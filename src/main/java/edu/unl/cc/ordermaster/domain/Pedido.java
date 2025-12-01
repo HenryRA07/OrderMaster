@@ -21,7 +21,6 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-
     public String visualizarPedido(){
         StringBuilder pedido = new StringBuilder();
         pedido.append("---------------------------------\n");

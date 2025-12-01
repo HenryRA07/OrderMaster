@@ -52,12 +52,12 @@ public class ComprobanteVenta {
 
     public void generarPDF() throws DocumentException, FileNotFoundException {
         pdf = new PDFgenerator();
-        pdf.generar(generarComprobante());
+        pdf.generar(generarComprobante(), pedido.getCliente().getNombreCompleto());
         enviarCorreo();
     }
     private void enviarCorreo() {
         gmail = new Gmail();
-        gmail.enviarEmail(this.pedido.getCliente().getEmail(),this.fechaComprobante,"Evio comprobante de venta", "Se adjunta el archivo pdf en este mensaje");
+        gmail.enviarEmail(this.pedido.getCliente().getEmail(),this.fechaComprobante,pedido.getCliente().getNombreCompleto());
     }
 
     public String getNombreRestaurante() {

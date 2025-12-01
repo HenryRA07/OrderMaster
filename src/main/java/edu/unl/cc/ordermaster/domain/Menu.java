@@ -24,8 +24,7 @@ public class Menu {
     public String visualizarMenu (){
         StringBuilder menu = new StringBuilder();
 
-        menu.append("---MENÚ DEL DÍA---\n");
-        menu.append("------------------\n");
+        menu.append("-------- Menú --------\n");
 
         menu.append("Fecha de creación: ").append(fechaCreacion).append("\n");
         menu.append("Nombre de menu: ").append(nombreMenu != null ? nombreMenu : "Sin nombre").append("\n");
@@ -50,7 +49,7 @@ public class Menu {
         }
 
         menu.append("\n-----------------------\n");
-        menu.append("Total de items: ").append(itemMenu != null ? itemMenu.size() : 0).append("\n");
+        menu.append("Total de items: ").append(itemMenu != null ? itemMenu.size() : 0);
         menu.append("\n-----------------------\n");
 
         return menu.toString();

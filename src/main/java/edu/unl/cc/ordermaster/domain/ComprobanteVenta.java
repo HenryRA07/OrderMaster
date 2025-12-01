@@ -82,7 +82,7 @@ public class ComprobanteVenta {
         s.append("----------------------------\n");
         s.append("---------------------------------------------------\n");
         s.append("Metodo de pago: " + metodoPago.getClass().getSimpleName() +"\n");
-        s.append("Total pagar: $"+pedido.getPrecioTotal() + "\n");
+        s.append("Total pagar: $"+ pedido.getPrecioTotal() + "\n");
         s.append("" + metodoPago );
         return s.toString();
     }
@@ -110,5 +110,13 @@ public class ComprobanteVenta {
 
     public void setFechaComprobante(LocalDate fechaComprobante) {
         this.fechaComprobante = fechaComprobante;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

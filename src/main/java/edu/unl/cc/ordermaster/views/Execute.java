@@ -201,5 +201,3 @@ public class Execute {
 //        System.out.println(venta1.generaComprobante());
 //        System.out.println(venta2.generaComprobante());
 
-
-

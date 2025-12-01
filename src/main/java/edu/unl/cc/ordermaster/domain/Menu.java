@@ -21,6 +21,40 @@ public class Menu {
         this.tipoMenu = tipoMenu;
     }
 
+    public String visualizarMenu (){
+        StringBuilder menu = new StringBuilder();
+
+        menu.append("-------- Menú --------\n");
+
+        menu.append("Fecha de creación: ").append(fechaCreacion).append("\n");
+        menu.append("Nombre de menu: ").append(nombreMenu != null ? nombreMenu : "Sin nombre").append("\n");
+        menu.append("Tipo demenu: ").append(tipoMenu != null ? tipoMenu : "No especificado").append("\n");
+
+        menu.append("\n---Items Disponibles---\n");
+
+        if (itemMenu != null && !itemMenu.isEmpty()) {
+            menu.append("| # | Producto     | Precio | Disponible |\n");
+            menu.append("|---|--------------|--------|------------|\n");
+            int contador = 1;
+            for (ItemMenu item : itemMenu) {
+                menu.append(String.format(
+                        "| %-1d | %-12s | $%-5.2f | %-10s |\n",
+                        contador++,
+                        item.getProducto().getNombre(),
+                        item.getPrecio(),
+                        item.getDisponibilidad() ? "Sí" : "No"));
+            }
+        } else {
+            menu.append("No hay items disponibles en este menú.\n");
+        }
+
+        menu.append("\n-----------------------\n");
+        menu.append("Total de items: ").append(itemMenu != null ? itemMenu.size() : 0);
+        menu.append("\n-----------------------\n");
+
+        return menu.toString();
+    }
+
     public void agregar(ItemMenu item) {
         if (itemMenu == null) {
             itemMenu = new ArrayList<>();
@@ -75,6 +109,7 @@ public class Menu {
         this.itemMenu = itemMenu;
     }
 
+    
     public String visualizarMenu() {
         StringBuilder sb = new StringBuilder();
         sb.append("La fecha de creación es: ").append(fechaCreacion).append("\n");
@@ -89,6 +124,6 @@ public class Menu {
         return "Menu {" +
                 "fecharCreacion=" + fechaCreacion +
                 ", nombreMenu='" + nombreMenu + '\'' +
-                ", tipoMenu=" + tipoMenu;
+                ", tipoMenu=" + "}" + tipoMenu;
     }
 }

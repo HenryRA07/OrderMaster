@@ -75,7 +75,7 @@ public class Menu {
         this.itemMenu = itemMenu;
     }
 
-    public String VisualizarMenu() {
+    public String visualizarMenu() {
         StringBuilder sb = new StringBuilder();
         sb.append("La fecha de creación es: ").append(fechaCreacion).append("\n");
         sb.append("El nombre del menu es: ").append(nombreMenu).append("\n");

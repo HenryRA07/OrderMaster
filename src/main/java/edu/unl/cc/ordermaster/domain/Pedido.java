@@ -25,7 +25,7 @@ public class Pedido {
     public String visualizarPedido(){
         StringBuilder pedido = new StringBuilder();
         pedido.append("---------------------------------\n");
-        pedido.append("🧾 Pedido :\n");
+        pedido.append("Pedido :\n");
 
 
         if (cliente != null) {

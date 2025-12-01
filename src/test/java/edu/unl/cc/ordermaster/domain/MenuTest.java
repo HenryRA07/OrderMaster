@@ -52,7 +52,7 @@ class MenuTest {
         menu.agregar(itemMenu2);
         menu.agregar(itemMenu3);
         assertEquals(3,menu.getItemMenu().size());
-        System.out.println(menu.VisualizarMenu());
+        System.out.println(menu.visualizarMenu());
 
     }
 }

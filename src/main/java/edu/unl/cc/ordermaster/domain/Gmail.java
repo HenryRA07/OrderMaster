@@ -11,20 +11,34 @@ import java.util.Properties;
 
 public class Gmail {
     private static String email = "arevalofranz2007@gmail.com";
-    private static String pass = "vaek lehp prqv bogs";
+    private static String pass = "bkpfeygaekbjkxxb";
     private String subject = "Envio Comprobante De Venta";
     private String content = "Se Adjunta el comprobante de venta en archivo PDF";
     private Session session;
 
     private void propiedadesEmail() {
         Properties props = new Properties();
+
+//        props.put("mail.smtp.starttls.enable", "true");
+//        props.put("mail.smtp.host", "smtp.gmail.com");
+//        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
+//        props.setProperty("mail.smtp.starttls.enable", "true");
+//        props.setProperty("mail.smtp.port", "587");
+//        props.setProperty("mail.smtp.user", email);
+//        props.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+//        props.setProperty("mail.smtp.auth", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
+        props.put("mail.smtp.port", "465");
+        props.put("mail.smtp.auth", "true");
+
+        // Cambios clave para SSL
+        props.put("mail.smtp.ssl.enable", "true"); // Activa SSL directamente
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-        props.setProperty("mail.smtp.starttls.enable", "true");
-        props.setProperty("mail.smtp.port", "587");
-        props.setProperty("mail.smtp.user", email);
-        props.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
-        props.setProperty("mail.smtp.auth", "true");
+        props.put("mail.smtp.ssl.protocols", "TLSv1.2 TLSv1.3");
+
+        props.put("mail.smtp.connectiontimeout", "10000");
+        props.put("mail.smtp.timeout", "10000");
+        props.put("mail.smtp.writetimeout", "10000");
 
         Authenticator auth = new Authenticator() {
             @Override
@@ -47,17 +61,17 @@ public class Gmail {
             cuerpoMensaje.setContent(content, "text/html;charset=utf-8");
             Multipart multiparte = new MimeMultipart();
             multiparte.addBodyPart(cuerpoMensaje);
-            MimeBodyPart adjunto = new MimeBodyPart();
-            adjunto.attachFile("D:\\\\Usuarios\\\\Franz\\\\Documentacion\\\\Comprovante"+nombre+".pdf");
-            multiparte.addBodyPart(adjunto);
+//            MimeBodyPart adjunto = new MimeBodyPart();
+//            adjunto.attachFile("D:\\\\Usuarios\\\\Franz\\\\Documentacion\\\\Comprovante"+nombre+".pdf");
+//            multiparte.addBodyPart(adjunto);
             mensaje.setContent(multiparte);
             Transport.send(mensaje);
         } catch (AddressException e) {
             System.out.println("error AddressException: "+e.getMessage());
         } catch (MessagingException ex){
             System.out.println("error MessagingException: "+ex.getMessage());
-        } catch (IOException e) {
-            System.out.println("error IOException: "+e.getMessage());
+//        } catch (IOException e) {
+//            System.out.println("error IOException: "+e.getMessage());
         }
     }
 }

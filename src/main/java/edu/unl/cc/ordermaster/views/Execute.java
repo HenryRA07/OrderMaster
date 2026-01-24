@@ -157,13 +157,13 @@ public class Execute {
 
                             System.out.print("Monto depositado por el cliente: ");
                             float depositado = sc.nextFloat();
-                            System.out.print("Nombre del banco: ");
-                            String banco = sc.nextLine();
-                            sc.nextLine();
-                            System.out.print("Número de cuenta/referencia: ");
-                            String cuenta = sc.nextLine();
+//                            System.out.print("Nombre del banco: ");
+//                            String banco = sc.nextLine();
+//                            sc.nextLine();
+//                            System.out.print("Número de cuenta/referencia: ");
+//                            String cuenta = sc.nextLine();
 
-                            Transferencia transferencia = new Transferencia(depositado,banco,cuenta);
+                            Transferencia transferencia = new Transferencia(depositado,"Loja","1105552626");
                             ComprobanteVenta venta = new ComprobanteVenta("Chaman Black", "nose",pedido,transferencia);
                             System.out.println(venta.generarComprobante());
                             try {

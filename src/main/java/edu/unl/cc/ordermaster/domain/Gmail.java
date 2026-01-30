@@ -18,27 +18,13 @@ public class Gmail {
 
     private void propiedadesEmail() {
         Properties props = new Properties();
-
-//        props.put("mail.smtp.starttls.enable", "true");
-//        props.put("mail.smtp.host", "smtp.gmail.com");
-//        props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-//        props.setProperty("mail.smtp.starttls.enable", "true");
-//        props.setProperty("mail.smtp.port", "587");
-//        props.setProperty("mail.smtp.user", email);
-//        props.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
-//        props.setProperty("mail.smtp.auth", "true");
         props.put("mail.smtp.host", "smtp.gmail.com");
-        props.put("mail.smtp.port", "465");
-        props.put("mail.smtp.auth", "true");
-
-        // Cambios clave para SSL
-        props.put("mail.smtp.ssl.enable", "true"); // Activa SSL directamente
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-        props.put("mail.smtp.ssl.protocols", "TLSv1.2 TLSv1.3");
-
-        props.put("mail.smtp.connectiontimeout", "10000");
-        props.put("mail.smtp.timeout", "10000");
-        props.put("mail.smtp.writetimeout", "10000");
+        props.setProperty("mail.smtp.starttls.enable", "true");
+        props.setProperty("mail.smtp.port", "587");
+        props.setProperty("mail.smtp.user", email);
+        props.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+        props.setProperty("mail.smtp.auth", "true");
 
         Authenticator auth = new Authenticator() {
             @Override
